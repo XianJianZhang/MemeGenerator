@@ -22,20 +22,18 @@ sf::Image memer::generateMeme(sf::Image base, sf::String topText, sf::String bot
     sf::Text bottom = sf::Text(bottomText, font);
     top.setOrigin(0, 0);
     bottom.setOrigin(0, 0);
-    if (topX ==-1 || topY == -1){
-        int defaultTopX = width/2 - 2*top.getCharacterSize();
-        int defaultTopY = height/3 - 10;
-        top.setPosition(defaultTopX, defaultTopY);
-    } else {
-        top.setPosition(topX, topY);
-    }
-    if (bottomX ==-1 || bottomY == -1){
-        int defaultBottomX = width/2 - 2*top.getCharacterSize();
-        int defaultBottomY = height - height/3 + 10;
-        bottom.setPosition(defaultBottomX, defaultBottomY);
-    } else {
-        bottom.setPosition(bottomX, bottomY);
-    }
+    if (topX ==-1)
+        topX = width/2 - 2*top.getCharacterSize();
+    if (topY == -1)
+        topY = height/3 - 10;
+    top.setPosition(topX, topY);
+
+    if (bottomX ==-1)
+        bottomX = width/2 - 2*top.getCharacterSize();
+    if (bottomY == -1)
+        bottomY = height - height/3 + 10;
+    bottom.setPosition(bottomX, bottomY);
+
     canvas.draw(top);
     canvas.draw(bottom);
     canvas.display();
